@@ -77,7 +77,7 @@ def run_once(claude: str, prompt: str, model: str, tag: str) -> tuple:
            "--permission-mode", "acceptEdits",
            "--strict-mcp-config"]  # MCPサーバーのツール定義を読み込まない(測定ノイズを減らす)
     t0 = time.time()
-    proc = subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True, timeout=1800)
+    proc = subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True, timeout=1800, stdin=subprocess.DEVNULL)
     wall = time.time() - t0
     RAW_DIR.mkdir(parents=True, exist_ok=True)
     (RAW_DIR / f"{tag}.json").write_text(proc.stdout + ("\n--- stderr ---\n" + proc.stderr if proc.stderr else ""),
