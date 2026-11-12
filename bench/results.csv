@@ -1,0 +1,9 @@
+timestamp,git_commit,version,lecture,run,model,total_input,total_output,total_cache_creation,total_cache_read,total_tokens,sonnet_tokens,haiku_tokens,other_tokens,main_input,main_output,main_cache_creation,main_cache_read,duration_s,turns,cost_usd,coverage,cited_ratio,n_questions,missing_keywords,note_path,status,note
+20261112-142020,d0cd002-dirty,v0,sample_lecture,1,sonnet,6,702,12201,88526,101435,101435,0,0,6,702,12201,88526,9.8,4,0.06468860000000001,,,,,notes/sample_lecture_v0_r1.md,no_note,
+20261112-142239,d0cd002-dirty,v0,sample_lecture,1,sonnet,8,2593,25397,137161,165159,165159,0,0,8,2593,25397,137161,24.5,5,0.14125010000000002,1.0,1.0,8,,notes/sample_lecture_v0_r1.md,ok,
+20261112-142313,322d100-dirty,baseline,-,1,sonnet,1189,180,8847,23674,33890,32527,1363,0,2,4,8847,23674,2.4,1,0.0380061,,,,,,ok,
+20261112-142319,322d100-dirty,v0,LD9,1,sonnet,12,6365,77336,330379,414092,414092,0,0,12,6365,77336,330379,58.2,7,0.4060559,1.0,1.0,10,,notes/LD9_v0_r1.md,ok,
+20261112-142421,322d100-dirty,v0,LD9,2,sonnet,12,6048,77233,330342,413635,413635,0,0,12,6048,77233,330342,56.1,7,0.40247020000000006,1.0,1.0,10,,notes/LD9_v0_r2.md,ok,
+20261112-142521,322d100-dirty,v0,LD9,3,sonnet,14,7103,78324,431706,517147,517147,0,0,14,7103,78324,431706,64.6,8,0.42752460000000003,1.0,1.0,11,,notes/LD9_v0_r3.md,ok,
+20261112-142629,322d100-dirty,v0,LD9,4,sonnet,12,6664,77919,330326,414921,414921,0,0,12,6664,77919,330326,60.5,7,0.41137260000000003,0.952,1.0,10,タイミング違反,notes/LD9_v0_r4.md,ok,extended_to_5 (spread of r1-3 = 25.0%)
+20261112-142733,322d100-dirty,v0,LD9,5,sonnet,12,5859,77090,330343,413304,413304,0,0,12,5859,77090,330343,56.7,7,0.4000083,1.0,1.0,10,,notes/LD9_v0_r5.md,ok,extended_to_5 (spread of r1-3 = 25.0%)
