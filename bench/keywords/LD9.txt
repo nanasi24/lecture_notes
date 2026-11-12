@@ -1,0 +1,22 @@
+# LD9.pdf(Memory Logic)の重要用語。1行1語、| で日英の表記ゆれを並べる
+メモリ論理|memory logic
+組み合わせ回路|combinational circuit
+順序回路|sequential circuit
+レジスタ|register
+DRAM
+ラッチ|latch
+RSラッチ|RS latch|RS NOR latch|RS NAND latch
+セット|set
+リセット|reset
+保持|hold
+禁止入力|prohibited input
+ゲート遅延|gate delay
+クロック信号|clock signal
+クロック周波数|clock frequency|周波数
+Dラッチ|D latch
+タイミング違反|timing violation|timing requirement
+不定値|unknown value
+リセット信号|reset signal|reset time
+マスタースレーブ|master-slave
+エッジトリガ|edge-triggered|positive-edge|negative-edge
+クリティカルパス|critical path
