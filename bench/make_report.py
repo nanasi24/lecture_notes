@@ -66,10 +66,13 @@ def main() -> None:
                 f"{fmt_f(agg([f(r['cost_usd']) for r in base_rows]), 4, '$')}", ""]
 
     for lecture in sorted({k[0] for k in groups if k[0] != "-"}):
-        out += [f"## {lecture}", "",
-                "| 版 | n | 合計トークン | v0比 | 内 キャッシュ読込 | Sonnet / Haiku | コスト換算 | v0比 | 時間(秒) | 網羅率 | 根拠付き率 |",
+        base_v = next(v for v in ORDER[1:] if (lecture, v) in groups)  # v0 が無い資料は最初の版を基準にする
+        out += [f"## {lecture}", ""]
+        if base_v != "v0":
+            out += [f"(この資料では v0 を測っていないので {base_v} を基準にする)", ""]
+        out += [f"| 版 | n | 合計トークン | {base_v}比 | 内 キャッシュ読込 | Sonnet / Haiku | コスト換算 | {base_v}比 | 時間(秒) | 網羅率 | 根拠付き率 |",
                 "|---|---|---|---|---|---|---|---|---|---|---|"]
-        base = groups.get((lecture, "v0"), [])
+        base = groups.get((lecture, base_v), [])
         bt = agg([f(r["total_tokens"]) for r in base])
         bc = agg([f(r["cost_usd"]) for r in base])
         for v in ORDER[1:]:
