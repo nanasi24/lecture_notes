@@ -1,0 +1,45 @@
+# LD8-10.pdf(LD8〜LD10 をつなげた長い資料)の重要用語。1行1語、| で日英の表記ゆれを並べる
+# --- LD8: Combinational Circuits 2
+減算器|subtractor
+2の補数|2's complement|2’s complement
+加減算器|adder-subtractor|addsub
+面積|area
+算術論理演算装置|ALU|arithmetic logic unit
+乗算器|multiplier
+部分積|partial product
+左シフト|left shift
+配列乗算器|array multiplier
+# --- LD9: Memory Logic
+メモリ論理|memory logic
+組み合わせ回路|combinational circuit
+順序回路|sequential circuit
+レジスタ|register
+DRAM
+ラッチ|latch
+RSラッチ|RS latch|RS NOR latch|RS NAND latch
+セット|set
+リセット|reset
+保持|hold
+禁止入力|prohibited input
+ゲート遅延|gate delay
+クロック信号|clock signal
+クロック周波数|clock frequency|周波数
+Dラッチ|D latch
+タイミング違反|timing violation|timing requirement
+不定値|unknown value
+リセット信号|reset signal|reset time
+マスタースレーブ|master-slave
+エッジトリガ|edge-triggered|positive-edge|negative-edge
+クリティカルパス|critical path
+# --- LD10: Sequential Circuits
+カウンタ|counter
+状態割り当て|state assignment
+状態遷移表|state transition table
+状態遷移図|state transition diagram
+次状態|next state
+同期式回路|synchronous circuit
+セットアップ|setup
+ホールド制約|hold constraint
+サイクルタイム|cycle time|clock cycle
+検証|verification
+テスト系列|test sequence|テスト入力
