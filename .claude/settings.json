@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(.venv/bin/python .claude/skills/review-notes/extract.py:*)",
+      "Read(./lectures/**)",
+      "Read(./samples/**)",
+      "Read(./work/**)",
+      "Read(./.claude/**)",
+      "Write(./notes/**)",
+      "Write(./work/**)",
+      "Edit(./notes/**)",
+      "Edit(./work/**)"
+    ]
+  }
+}

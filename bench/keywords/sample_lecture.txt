@@ -1,0 +1,16 @@
+# sample_lecture.pdf の重要用語(1行1語、| で表記ゆれ)
+スタック|stack
+キュー|queue
+LIFO|後入れ先出し
+FIFO|先入れ先出し
+push
+pop
+enqueue
+dequeue
+オーバーフロー|overflow
+アンダーフロー|underflow
+リングバッファ|circular buffer
+両端キュー|deque
+幅優先探索|BFS
+コールスタック|call stack
+逆ポーランド記法|reverse polish
