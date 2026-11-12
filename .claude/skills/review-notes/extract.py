@@ -1,7 +1,7 @@
 """講義PDFをページ単位のテキストに変換する前処理。
 
 使い方:
-  python extract.py <pdf> --out work/<name> [--raw] [--split] [--chunk-size N]
+  python extract.py <pdf> --out work/<name> [--raw] [--split] [--chunk-size N] [--groups N]
 
 出力 (--out 配下):
   pages.txt        全ページ。各ページは "--- p.N ---" で始まる(根拠ページ番号用)
@@ -113,6 +113,7 @@ def main() -> None:
     ap.add_argument("--raw", action="store_true", help="ノイズ除去しない")
     ap.add_argument("--split", action="store_true", help="章/セクション単位に分割")
     ap.add_argument("--chunk-size", type=int, default=8)
+    ap.add_argument("--groups", type=int, help="--split 時、チャンクを N グループにまとめる(v3b 用)")
     a = ap.parse_args()
 
     raw = read_pages(a.pdf)
@@ -140,11 +141,39 @@ def main() -> None:
         for k, (s, e) in enumerate(split_chunks(len(pages), titles, a.chunk_size), start=1):
             path = cdir / f"chunk_{k:02d}.txt"
             path.write_text(render(pages, s, e), encoding="utf-8")
-            manifest["chunks"].append({"file": str(path), "pages": [s, e]})
+            manifest["chunks"].append({"file": str(path), "pages": [s, e],
+                                       "chars": sum(len(ln) for p in pages[s - 1:e] for ln in p)})
+        if a.groups:
+            manifest["groups"] = group_chunks(manifest["chunks"], a.groups)
     (a.out / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
-    json.dump({k: v for k, v in manifest.items() if k != "chunks"} | {"n_chunks": len(manifest["chunks"])},
-              sys.stdout, ensure_ascii=False)
+    summary = {k: v for k, v in manifest.items() if k not in ("chunks", "groups")}
+    summary["n_chunks"] = len(manifest["chunks"])
+    if "groups" in manifest:  # グループ一覧も標準出力に出し、manifest.json を読む1ターンを省けるようにする
+        summary["groups"] = manifest["groups"]
+    json.dump(summary, sys.stdout, ensure_ascii=False)
     print()
+
+
+def group_chunks(chunks: list, n_groups: int) -> list:
+    """連続するチャンクを、文字数がなるべく均等になるよう n_groups 個にまとめる。
+
+    各グループの目標は total * k / n_groups(累積)。次のチャンクを足すと目標から遠ざかるなら、
+    足す前にグループを閉じる。
+    """
+    total = sum(c["chars"] for c in chunks)
+    n_groups = max(1, min(n_groups, len(chunks)))
+    groups, cur, acc = [], [], 0
+    for i, c in enumerate(chunks):
+        target = total * (len(groups) + 1) / n_groups
+        left = len(chunks) - i  # c を含む残りチャンク数
+        need = n_groups - len(groups) - 1  # cur を閉じた後に必要なグループ数
+        if cur and need > 0 and (abs(acc + c["chars"] - target) > abs(acc - target) or left == need):
+            groups.append(cur)
+            cur = []
+        cur.append(c)
+        acc += c["chars"]
+    groups.append(cur)
+    return [{"files": [c["file"] for c in g], "pages": [g[0]["pages"][0], g[-1]["pages"][1]]} for g in groups]
 
 
 if __name__ == "__main__":

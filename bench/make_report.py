@@ -12,7 +12,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 RESULTS = ROOT / "bench" / "results.csv"
 REPORT = ROOT / "bench" / "report.md"
-ORDER = ["baseline", "v0", "v1", "v2", "v3"]
+ORDER = ["baseline", "v0", "v1", "v2", "v3", "v3b"]
 
 
 def f(x):
